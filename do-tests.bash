@@ -29,8 +29,8 @@ source install/setup.bash
 colcon test --event-handlers console_direct+
 
 # Generate coverage report if tests pass
-lcov --capture --directory build --output-file coverage.info --rc lcov_branch_coverage=1
-lcov --remove coverage.info '/opt/*' --output-file filtered_coverage.info
+lcov --capture --directory ~/ros2_ws/build --output-file coverage.info --rc lcov_branch_coverage=1
+lcov --remove coverage.info '/opt/*' '/usr/*' --output-file filtered_coverage.info
 lcov --extract filtered_coverage.info '*/libs/debris/*' '*/test/*' --output-file filtered_coverage.info
 genhtml filtered_coverage.info --output-directory coverage_report
 
