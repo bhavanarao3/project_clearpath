@@ -37,4 +37,4 @@ genhtml filtered_coverage.info --output-directory coverage_report
 # Print location of the generated file
 echo "Coverage report generated at:"
 pwd
-ls -l coverage_filtered.info
+ls -l filtered_coverage.info
