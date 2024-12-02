@@ -30,7 +30,8 @@ colcon test --event-handlers console_direct+
 
 # Generate coverage report if tests pass
 lcov --capture --directory build --output-file coverage.info
-lcov --extract coverage.info '*/libs/debris/*' '*/test/*' --output-file filtered_coverage.info
+lcov --remove coverage.info '/opt/*' --output-file temp1.info
+lcov --extract temp1.info '*/libs/debris/*' '*/test/*' --output-file filtered_coverage.info
 genhtml filtered_coverage.info --output-directory coverage_report
 
 
