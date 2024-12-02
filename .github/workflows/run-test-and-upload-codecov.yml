@@ -28,13 +28,14 @@ jobs:
           sudo apt install -y doxygen lcov gcovr
           sudo apt install -y ros-humble-ament-cmake python3-colcon-common-extensions ros-humble-gazebo-ros-pkgs
 
-          # Install GTK dependencies to avoid OpenCV GTK issues
-          sudo apt install -y libgtk-3-dev
+          # Install OpenCV dependencies for headless mode
+          sudo apt install -y libopencv-dev libgtk-3-dev
+          sudo apt install -y libgl1-mesa-glx libxrender1 libfontconfig1
 
-      # Set environment variable to use offscreen backend for OpenCV (avoid GTK in CI)
-      - name: Set OpenCV environment variable
+      # Set OpenCV to use headless mode
+      - name: Set OpenCV to Headless Mode
         run: |
-          echo "QT_QPA_PLATFORM=offscreen" >> $GITHUB_ENV
+          echo "export OPENCV_HEADLESS=1" >> $GITHUB_ENV
 
       # Run all unit test, integration test, and generate combined coverage report
       - name: Build, run unit test, and generate coverage report
@@ -47,6 +48,6 @@ jobs:
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
-          files: /github/home/ros2_ws/coverage_filtered.info 
+          files: /github/home/ros2_ws/filtered_coverage.info 
           fail_ci_if_error: true # optional (default = false)
           verbose: true # optional (default = false)
