@@ -53,17 +53,12 @@ jobs:
         run: |
           sudo chmod +x do-tests.bash
           ./do-tests.bash
-      
-      - name: Filter coverage report
-        run: |
-          lcov --remove ~/ros2_ws/filtered_coverage.info '/opt/*' '/usr/*' '/lib/*' --output-file ~/ros2_ws/filtered_coverage_no_opt.info
-          genhtml ~/ros2_ws/filtered_coverage_no_opt.info --output-directory ~/ros2_ws/coverage_report_filtered
 
       # Upload coverage result to CodeCov
       - name: Upload coverage result to CodeCov
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: ~/ros2_ws/filtered_coverage_no_opt.info
+          files: /github/home/ros2_ws/filtered_coverage.info
           fail_ci_if_error: true
           verbose: true
