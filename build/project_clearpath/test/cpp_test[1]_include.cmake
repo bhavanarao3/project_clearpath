@@ -1,0 +1,5 @@
+if(EXISTS "/home/ana/final/clearpath/build/project_clearpath/test/cpp_test[1]_tests.cmake")
+  include("/home/ana/final/clearpath/build/project_clearpath/test/cpp_test[1]_tests.cmake")
+else()
+  add_test(cpp_test_NOT_BUILT cpp_test_NOT_BUILT)
+endif()
