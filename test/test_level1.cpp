@@ -251,7 +251,4 @@ TEST_F(DebrisDetectorTest, Move2NextDebrisTest) {
   EXPECT_TRUE(debris_detector_->move2next_debris());
 }
 
-int main(int argc, char** argv) {
-  ::testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
-}
+
